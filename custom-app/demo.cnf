@@ -1,0 +1,27 @@
+[client]
+
+port                           = 3306
+socket                         = /tmp/mysql.sock
+default_character_set          = utf8                                # Possibly this setting is correct for most recent Linux systems
+
+
+[mysqld_safe]
+
+open_files_limit               = 8192                                # You possibly have to adapt your O/S settings as well
+user                           = mysql
+log-error                      = error.log
+
+
+[mysqld]
+
+# Connection and Thread variables
+
+port                           = 3306
+socket                         = /tmp/mysql.sock
+
+max_allowed_packet             = 16M
+default_storage_engine         = InnoDB                              # Defaults since 5.5
+
+max_connections                = 151                                 # Values < 1000 are typically good
+max_user_connections           = 50                                  # Limit one specific user/application
+thread_cache_size              = 151                                 # Up to max_connections makes sense
